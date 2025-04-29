@@ -1,0 +1,9 @@
+services:
+  ubuntu:
+    build: .
+    volumes:
+      - ubuntu_data:/home/ubuntu
+    tty: true
+    container_name: ubuntu24-04
+volumes:
+  ubuntu_data:
