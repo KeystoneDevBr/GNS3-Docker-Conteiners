@@ -1,24 +1,12 @@
-#!/usr/bin/env bash
+*filter
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
 
-# Limpa regras existentes
-iptables -F
-iptables -X
+-A INPUT -i lo -j ACCEPT
+-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+-A INPUT -p tcp --dport 22 -j DROP
+-A INPUT -p tcp --dport 80 -j ACCEPT
+-A INPUT -p tcp --dport 443 -j ACCEPT
 
-# Política padrão: negar entrada, permitir saída
-iptables -P INPUT DROP
-iptables -P FORWARD DROP
-iptables -P OUTPUT ACCEPT
-
-# Permitir loopback
-iptables -A INPUT -i lo -j ACCEPT
-
-# Permitir conexões já estabelecidas
-iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
-
-# Permitir entrada nas portas 22 (SSH) e 80 (HTTP)
-iptables -A INPUT -p tcp --dport 22 -j ACCEPT
-iptables -A INPUT -p tcp --dport 80 -j ACCEPT
-
-# ------------------------ Filter Table Configuration END ---------------------------------
-# Save configurations
 COMMIT
