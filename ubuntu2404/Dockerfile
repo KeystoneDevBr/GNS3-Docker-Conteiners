@@ -18,9 +18,6 @@ RUN apt-get update && \
 COPY iptables.sh /etc/iptables/rules.v4
 RUN chmod +x /etc/iptables/rules.v4
 
-COPY interfaces /etc/network/interfaces
-RUN chmod 644 /etc/network/interfaces
-
 # Define o usuário padrão
 USER root
 
