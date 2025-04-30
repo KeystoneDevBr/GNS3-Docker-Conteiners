@@ -1,9 +1,10 @@
 services:
   ubuntu:
     build: .
+    container_name: ubuntu24-04
     volumes:
       - ubuntu_data:/home/ubuntu
     tty: true
-    container_name: ubuntu24-04
+    privileged: true  # necessário para iptables funcionar corretamente
 volumes:
   ubuntu_data:

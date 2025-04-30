@@ -19,7 +19,6 @@ iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 
-# Fica em loop para manter o container vivo e visualizar regras
-echo "Regras aplicadas. Container ativo."
-iptables -L -n -v
-tail -f /dev/null
+# ------------------------ Filter Table Configuration END ---------------------------------
+# Save configurations
+COMMIT
