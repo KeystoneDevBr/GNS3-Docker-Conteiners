@@ -1,15 +1,12 @@
 # Use a imagem oficial do Ubuntu
-FROM ubuntu:latest
-
-# Define o usuário root
-USER root
+FROM ubuntu
 
 # Variáveis de ambiente
-ENV DEBIAN_FRONTEND=noninteractive
+
 ENV USER=ubuntu
 ENV PASS=ubuntu
 
-
+ENV DEBIAN_FRONTEND=noninteractive
 # Instalação de pacotes necessários
 RUN apt-get update && \
     apt-get install -y sudo passwd nmap ssh net-tools htop iputils-ping \
@@ -22,6 +19,9 @@ COPY start.sh /start.sh
 
 # Permissões de execução
 RUN chmod +x /start.sh
+
+# Define o usuário root
+USER root
 
 # Diretório de trabalho padrão
 WORKDIR /root
