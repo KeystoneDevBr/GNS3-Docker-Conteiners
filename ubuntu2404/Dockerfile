@@ -14,11 +14,18 @@ RUN apt-get update && \
     iproute2 curl iperf3 mtr socat tcpdump telnet dnsutils traceroute vim iptables && \
     rm -rf /var/lib/apt/lists/*
 
+# Script para configurar iptables
+COPY iptables.sh /etc/iptables/rules.v4
+RUN chmod +x /etc/iptables/rules.v4
+
+COPY interfaces /etc/network/interfaces
+RUN chmod 644 /etc/network/interfaces
+
 # Define o usuário padrão
-USER $USER
+USER root
 
 # Diretório de trabalho padrão
-WORKDIR /home/$USER
+WORKDIR /root
 
 # Comando padrão
 CMD ["bash"]
